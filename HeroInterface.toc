@@ -1,3 +1,4 @@
 ## Title: HeroInterface
 ## Interface: 80000
+## Notes: Pimp my UI
 HeroInterface.lua
