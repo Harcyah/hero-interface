@@ -1,7 +1,5 @@
 local frame = CreateFrame("Frame");
-
 frame:RegisterEvent("PLAYER_LOGIN");
-
 frame:Hide();
 
 frame:SetScript("OnEvent", function(self, event, ...)
