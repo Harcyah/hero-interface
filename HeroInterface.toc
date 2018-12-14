@@ -1,4 +1,4 @@
 ## Title: HeroInterface
-## Interface: 80000
+## Interface: 80100
 ## Notes: Pimp my UI
 HeroInterface.lua
