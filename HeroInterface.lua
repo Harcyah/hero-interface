@@ -1,5 +1,6 @@
 local frame = CreateFrame("Frame");
 frame:RegisterEvent("PLAYER_LOGIN");
+frame:RegisterEvent("BANKFRAME_OPENED");
 frame:Hide();
 
 frame:SetScript("OnEvent", function(self, event, ...)
@@ -21,6 +22,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
 		TargetFrame:SetUserPlaced(true);	
+	end
+	
+	if (event == "BANKFRAME_OPENED") then
+		ToggleAllBags();
 	end
 	
 end)
