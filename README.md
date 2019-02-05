@@ -1,4 +1,4 @@
-# wow-hero-interface
+# hero-interface
 
 My first attempt with world of warcraft addons.
 
