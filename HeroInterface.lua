@@ -1,7 +1,17 @@
 local frame = CreateFrame("Frame");
 frame:RegisterEvent("PLAYER_LOGIN");
+frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
 frame:Hide();
+
+local TOYS={}
+TOYS[35275] = 25; -- orbe-des-sindorei
+TOYS[64651] = 26; -- amulette-de-feu-follet
+TOYS[118716] = 27; -- atours-de-goren
+TOYS[164375] = 28; -- banane-de-mauvais-mojo
+TOYS[134022] = 29; -- beau-chapeau-de-burgy-cœur-noir
+TOYS[44719] = 30; -- bière-frénécœur
+TOYS[66888] = 31; -- bâton-de-fourrure-et-griffes
 
 frame:SetScript("OnEvent", function(self, event, ...)
 
@@ -21,7 +31,44 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
-		TargetFrame:SetUserPlaced(true);	
+		TargetFrame:SetUserPlaced(true);
+		
+		for i = 1, 12 do
+            local bu = _G['MultiBarRightButton'..i]
+            bu:ClearAllPoints()
+            if i == 1 then
+                bu:SetFrameStrata('LOW')
+                bu:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 20, 64)
+            else
+                local previous = _G['MultiBarRightButton'..i - 1]
+                bu:SetPoint('LEFT', previous, 'RIGHT', 6, 0)
+            end
+        end
+						
+		for i = 1, 12 do
+            local bu = _G['MultiBarLeftButton'..i]
+            bu:ClearAllPoints()
+            if i == 1 then
+                bu:SetFrameStrata('LOW')
+                bu:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 20, 20)
+            else
+                local previous = _G['MultiBarLeftButton'..i - 1]
+                bu:SetPoint('LEFT', previous, 'RIGHT', 6, 0)
+            end
+        end
+		
+		MultiActionBar_Update();
+				
+		for k, v in pairs(TOYS) do 
+			ClearCursor();
+			PickupItem(k)
+			PlaceAction(v)
+		end
+	end
+	
+	if (event == "PLAYER_ENTERING_WORLD") then
+		SHOW_MULTI_ACTIONBAR_3 = true;
+		SHOW_MULTI_ACTIONBAR_4 = true;
 	end
 	
 	if (event == "BANKFRAME_OPENED") then
