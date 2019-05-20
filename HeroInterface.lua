@@ -25,6 +25,9 @@ TOYS[71259] = 41; -- médaillon-de-leyara
 TOYS[163750] = 42; -- kostume-de-kovork
 TOYS[127696] = 43; -- miroir-de-mascotte-magique
 TOYS[122283] = 44; -- mémoire-sacrée-de-rukhmar
+TOYS[127394] = 45; -- camouflage-boguelin
+TOYS[129149] = 46; -- charme-de-la-porte-de-la-mort
+TOYS[127659] = 47; -- chapeau-de-boucanier-de-fer-fantomatique
 TOYS[156833] = 48; -- siffletimbre-de-katy
 
 frame:SetScript("OnEvent", function(self, event, ...)
@@ -46,32 +49,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
 		TargetFrame:SetUserPlaced(true);
-		
-		for i = 1, 12 do
-            local bu = _G['MultiBarRightButton'..i]
-            bu:ClearAllPoints()
-            if i == 1 then
-                bu:SetFrameStrata('LOW')
-                bu:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 20, 64)
-            else
-                local previous = _G['MultiBarRightButton'..i - 1]
-                bu:SetPoint('LEFT', previous, 'RIGHT', 6, 0)
-            end
-        end
-						
-		for i = 1, 12 do
-            local bu = _G['MultiBarLeftButton'..i]
-            bu:ClearAllPoints()
-            if i == 1 then
-                bu:SetFrameStrata('LOW')
-                bu:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 20, 20)
-            else
-                local previous = _G['MultiBarLeftButton'..i - 1]
-                bu:SetPoint('LEFT', previous, 'RIGHT', 6, 0)
-            end
-        end
-		
-		MultiActionBar_Update();
 				
 		for k, v in pairs(TOYS) do 
 			ClearCursor();
@@ -83,6 +60,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	if (event == "PLAYER_ENTERING_WORLD") then
 		SHOW_MULTI_ACTIONBAR_3 = true;
 		SHOW_MULTI_ACTIONBAR_4 = true;
+		SetCVar("multiBarRightVerticalLayout", "1");
+		InterfaceOptions_UpdateMultiActionBars();
 	end
 	
 	if (event == "BANKFRAME_OPENED") then
