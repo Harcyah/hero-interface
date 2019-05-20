@@ -12,6 +12,20 @@ TOYS[164375] = 28; -- banane-de-mauvais-mojo
 TOYS[134022] = 29; -- beau-chapeau-de-burgy-cœur-noir
 TOYS[44719] = 30; -- bière-frénécœur
 TOYS[66888] = 31; -- bâton-de-fourrure-et-griffes
+TOYS[163736] = 32; -- visage-spectral
+TOYS[118937] = 33; -- tresse-de-gamon
+TOYS[88566] = 34; -- sac-des-horreurs-de-krastinov
+TOYS[122117] = 35; -- plume-maudite-dikzan
+TOYS[128807] = 36; -- pièce-aux-nombreuses-faces
+TOYS[129113] = 37; -- pichet-dhydromel-légèrement-luminescent
+TOYS[141862] = 38; -- particule-de-lumière
+TOYS[64646] = 39; -- os-de-transformation
+TOYS[1973] = 40; -- orbe-de-tromperie
+TOYS[71259] = 41; -- médaillon-de-leyara
+TOYS[163750] = 42; -- kostume-de-kovork
+TOYS[127696] = 43; -- miroir-de-mascotte-magique
+TOYS[122283] = 44; -- mémoire-sacrée-de-rukhmar
+TOYS[156833] = 48; -- siffletimbre-de-katy
 
 frame:SetScript("OnEvent", function(self, event, ...)
 
