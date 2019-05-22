@@ -1,6 +1,5 @@
 local frame = CreateFrame("Frame");
 frame:RegisterEvent("PLAYER_LOGIN");
-frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
 frame:Hide();
 
@@ -55,9 +54,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			PickupItem(k)
 			PlaceAction(v)
 		end
-	end
-	
-	if (event == "PLAYER_ENTERING_WORLD") then
+		
 		SHOW_MULTI_ACTIONBAR_3 = true;
 		SHOW_MULTI_ACTIONBAR_4 = true;
 		SetCVar("multiBarRightVerticalLayout", "1");
