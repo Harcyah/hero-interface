@@ -1,5 +1,6 @@
 local frame = CreateFrame("Frame");
 frame:RegisterEvent("PLAYER_LOGIN");
+frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
 frame:Hide();
 
@@ -48,17 +49,36 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
 		TargetFrame:SetUserPlaced(true);
-				
-		for k, v in pairs(TOYS) do 
-			ClearCursor();
-			PickupItem(k)
-			PlaceAction(v)
+	end
+	
+	if (event == "PLAYER_ENTERING_WORLD") then
+		local update = false;
+		
+		if (SHOW_MULTI_ACTIONBAR_3 == nil or SHOW_MULTI_ACTIONBAR_3 == false) then
+			SHOW_MULTI_ACTIONBAR_3 = true;
+			update = true;
 		end
 		
-		SHOW_MULTI_ACTIONBAR_3 = true;
-		SHOW_MULTI_ACTIONBAR_4 = true;
-		SetCVar("multiBarRightVerticalLayout", "1");
-		InterfaceOptions_UpdateMultiActionBars();
+		if (SHOW_MULTI_ACTIONBAR_4 == nil or SHOW_MULTI_ACTIONBAR_4 == false) then
+			SHOW_MULTI_ACTIONBAR_4 = true;
+			update = true;
+		end
+		
+		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
+			SetCVar("multiBarRightVerticalLayout", "1");
+			update = true;
+		end
+		
+		if (update == true) then
+			DEFAULT_CHAT_FRAME:AddMessage('Refreshing toy bar');
+			
+			InterfaceOptions_UpdateMultiActionBars();
+			for k, v in pairs(TOYS) do 
+				ClearCursor();
+				PickupItem(k)
+				PlaceAction(v)
+			end
+		end
 	end
 	
 	if (event == "BANKFRAME_OPENED") then
