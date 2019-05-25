@@ -1,4 +1,5 @@
 local frame = CreateFrame("Frame");
+frame:RegisterEvent("CHAT_MSG_LOOT");
 frame:RegisterEvent("PLAYER_LOGIN");
 frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
@@ -85,4 +86,40 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		ToggleAllBags();
 	end
 	
+	if (event == "CHAT_MSG_LOOT") then
+		local text = select(1, ...);
+		local id = string.match(text, "Hitem:(.-):");
+		local eventPlayerName  = select(2, ...);
+			
+		local playerName = UnitName("Player");
+		local realmName = string.gsub(GetRealmName(), "%s+", "");
+		local fullPlayerName = playerName .. "-" .. realmName;
+		
+		local itemName = select(1, GetItemInfo(id));
+		local itemRarity = select(3, GetItemInfo(id));
+		local itemType = select(6, GetItemInfo(id));
+		local itemSlot = select(9, GetItemInfo(id));
+		local itemBind = select(14, GetItemInfo(id));
+		
+		if (itemRarity == nil) then
+			itemRarity = 'N/A'
+		end
+		
+		if (itemType == nil) then
+			itemType = 'N/A'
+		end
+		
+		if (itemSlot == nil) then
+			itemSlot = 'N/A'
+		end
+		
+		if (itemBind == nil) then
+			itemBind = 'N/A'
+		end
+		
+		if (fullPlayerName == eventPlayerName and itemRarity >= 3 and itemBind == 2) then
+			DEFAULT_CHAT_FRAME:AddMessage('Bind on equip loot : Looted ' .. itemName .. ' type ' .. itemType, 1, 0, 1);
+		end
+	end
+		
 end)
