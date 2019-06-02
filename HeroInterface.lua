@@ -118,6 +118,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		end
 		
 		if (fullPlayerName == eventPlayerName and itemRarity >= 3 and itemBind == 2) then
+			PlaySound(SOUNDKIT.AUCTION_WINDOW_OPEN, "Master");
 			DEFAULT_CHAT_FRAME:AddMessage('Bind on equip loot : Looted ' .. itemName .. ' type ' .. itemType, 1, 0, 1);
 		end
 	end
