@@ -3,6 +3,7 @@ frame:RegisterEvent("CHAT_MSG_LOOT");
 frame:RegisterEvent("PLAYER_LOGIN");
 frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
+frame:RegisterEvent("AUCTION_HOUSE_SHOW");
 frame:Hide();
 
 local TOYS={}
@@ -83,6 +84,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if (event == "BANKFRAME_OPENED") then
+		ToggleAllBags();
+	end
+	
+	if (event == "AUCTION_HOUSE_SHOW") then
 		ToggleAllBags();
 	end
 	
