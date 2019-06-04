@@ -84,11 +84,11 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 	
 	if (event == "BANKFRAME_OPENED") then
-		ToggleAllBags();
+		OpenAllBags();
 	end
 	
 	if (event == "AUCTION_HOUSE_SHOW") then
-		ToggleAllBags();
+		OpenAllBags();
 	end
 	
 	if (event == "CHAT_MSG_LOOT") then
