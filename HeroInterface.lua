@@ -4,6 +4,7 @@ frame:RegisterEvent("PLAYER_LOGIN");
 frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
 frame:RegisterEvent("AUCTION_HOUSE_SHOW");
+frame:RegisterEvent("VIGNETTE_MINIMAP_UPDATED");
 frame:Hide();
 
 local TOYS={}
@@ -89,6 +90,16 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	
 	if (event == "AUCTION_HOUSE_SHOW") then
 		OpenAllBags();
+	end
+	
+	if (event == "VIGNETTE_MINIMAP_UPDATED") then
+		local guid = select(1, ...);
+		local onMinimap = select(2, ...);
+		if (onMinimap) then
+			local info = C_VignetteInfo.GetVignetteInfo(guid)
+			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+			DEFAULT_CHAT_FRAME:AddMessage('Rare mob alert -> ' .. info.name .. ' !!', 1, 0, 1);
+		end
 	end
 	
 	if (event == "CHAT_MSG_LOOT") then
