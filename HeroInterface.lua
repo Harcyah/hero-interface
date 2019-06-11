@@ -33,6 +33,18 @@ TOYS[129149] = 46; -- charme-de-la-porte-de-la-mort
 TOYS[127659] = 47; -- chapeau-de-boucanier-de-fer-fantomatique
 TOYS[156833] = 48; -- siffletimbre-de-katy
 
+local TRACKED_ACHIEVEMENTS = {
+	10167,
+	11736,
+	12078,
+	9598,
+	7501,
+	9900,
+	9824,
+	12028,
+	12078
+}
+
 frame:SetScript("OnEvent", function(self, event, ...)
 
 	if (event == "PLAYER_LOGIN") then
@@ -81,6 +93,17 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				PickupItem(k)
 				PlaceAction(v)
 			end
+		end
+		
+		local trackedAchievements = { GetTrackedAchievements() }
+	    for i = 1, #trackedAchievements do
+			local achievementID = trackedAchievements[i];
+			RemoveTrackedAchievement(achievementID);
+		end
+		
+		for i = 1, #TRACKED_ACHIEVEMENTS do
+			id = TRACKED_ACHIEVEMENTS[i];
+			AddTrackedAchievement(id);
 		end
 	end
 	
