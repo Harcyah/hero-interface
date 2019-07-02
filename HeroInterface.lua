@@ -38,11 +38,11 @@ local TRACKED_ACHIEVEMENTS = {
 	11738,
 	12078,
 	9598,
-	9643,
 	9900,
 	9824,
 	12028,
-	12078
+	12078,
+	9527
 }
 
 frame:SetScript("OnEvent", function(self, event, ...)
