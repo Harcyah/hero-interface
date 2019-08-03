@@ -34,15 +34,14 @@ TOYS[127659] = 47; -- chapeau-de-boucanier-de-fer-fantomatique
 TOYS[156833] = 48; -- siffletimbre-de-katy
 
 local TRACKED_ACHIEVEMENTS = {
+	9527,
+	9598,
+	9824,
+	9900,
 	10167,
 	11738,
-	12078,
-	9598,
-	9900,
-	9824,
 	12028,
-	12078,
-	9527
+	12078
 }
 
 frame:SetScript("OnEvent", function(self, event, ...)
