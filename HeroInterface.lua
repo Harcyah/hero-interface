@@ -50,69 +50,69 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		texture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Elite");
 		texture:SetAllPoints(PlayerFrame);
 		texture:SetTexCoord(1, 0.09375, 0, 0.78125);
-			
+
 		Minimap:SetZoom(0);
 		MinimapZoomIn:Hide();
 		MinimapZoomOut:Hide();
-		
+
 		PlayerFrame:ClearAllPoints();
 		PlayerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, -4);
 		FocusFrame:SetUserPlaced(true);
-		
+
 		TargetFrame:ClearAllPoints();
 		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
 		TargetFrame:SetUserPlaced(true);
 	end
-	
+
 	if (event == "PLAYER_ENTERING_WORLD") then
 		local update = false;
-		
+
 		if (SHOW_MULTI_ACTIONBAR_3 == nil or SHOW_MULTI_ACTIONBAR_3 == false) then
 			SHOW_MULTI_ACTIONBAR_3 = true;
 			update = true;
 		end
-		
+
 		if (SHOW_MULTI_ACTIONBAR_4 == nil or SHOW_MULTI_ACTIONBAR_4 == false) then
 			SHOW_MULTI_ACTIONBAR_4 = true;
 			update = true;
 		end
-		
+
 		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
 			SetCVar("multiBarRightVerticalLayout", "1");
 			update = true;
 		end
-		
+
 		if (update == true) then
 			DEFAULT_CHAT_FRAME:AddMessage('Refreshing toy bar');
-			
+
 			InterfaceOptions_UpdateMultiActionBars();
-			for k, v in pairs(TOYS) do 
+			for k, v in pairs(TOYS) do
 				ClearCursor();
 				PickupItem(k)
 				PlaceAction(v)
 			end
 		end
-		
+
 		local trackedAchievements = { GetTrackedAchievements() }
 	    for i = 1, #trackedAchievements do
 			local achievementID = trackedAchievements[i];
 			RemoveTrackedAchievement(achievementID);
 		end
-		
+
 		for i = 1, #TRACKED_ACHIEVEMENTS do
 			id = TRACKED_ACHIEVEMENTS[i];
 			AddTrackedAchievement(id);
 		end
 	end
-	
+
 	if (event == "BANKFRAME_OPENED") then
-		OpenAllBags();
+		ToggleAllBags(nil, true);
 	end
-	
+
 	if (event == "AUCTION_HOUSE_SHOW") then
-		OpenAllBags();
+		ToggleAllBags(nil, true);
 	end
-	
+
 	if (event == "VIGNETTE_MINIMAP_UPDATED") then
 		local guid = select(1, ...);
 		local onMinimap = select(2, ...);
@@ -122,42 +122,42 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			DEFAULT_CHAT_FRAME:AddMessage('Rare mob alert -> ' .. info.name .. ' !!', 1, 0, 1);
 		end
 	end
-	
+
 	if (event == "CHAT_MSG_LOOT") then
 		local text = select(1, ...);
 		local id = string.match(text, "Hitem:(.-):");
 		local eventPlayerName  = select(2, ...);
-			
+
 		local playerName = UnitName("Player");
 		local realmName = string.gsub(GetRealmName(), "%s+", "");
 		local fullPlayerName = playerName .. "-" .. realmName;
-		
+
 		local itemName = select(1, GetItemInfo(id));
 		local itemRarity = select(3, GetItemInfo(id));
 		local itemType = select(6, GetItemInfo(id));
 		local itemSlot = select(9, GetItemInfo(id));
 		local itemBind = select(14, GetItemInfo(id));
-		
+
 		if (itemRarity == nil) then
 			itemRarity = 'N/A'
 		end
-		
+
 		if (itemType == nil) then
 			itemType = 'N/A'
 		end
-		
+
 		if (itemSlot == nil) then
 			itemSlot = 'N/A'
 		end
-		
+
 		if (itemBind == nil) then
 			itemBind = 'N/A'
 		end
-		
+
 		if (fullPlayerName == eventPlayerName and itemRarity >= 3 and itemBind == 2) then
 			PlaySound(SOUNDKIT.AUCTION_WINDOW_OPEN, "Master");
 			DEFAULT_CHAT_FRAME:AddMessage('Bind on equip loot : Looted ' .. itemName .. ' type ' .. itemType, 1, 0, 1);
 		end
 	end
-		
+
 end)
