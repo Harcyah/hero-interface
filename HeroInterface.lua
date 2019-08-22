@@ -114,12 +114,22 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 
 	if (event == "VIGNETTE_MINIMAP_UPDATED") then
-		local guid = select(1, ...);
 		local onMinimap = select(2, ...);
 		if (onMinimap) then
+			local guid = select(1, ...);
 			local info = C_VignetteInfo.GetVignetteInfo(guid)
-			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
-			DEFAULT_CHAT_FRAME:AddMessage('Rare mob alert -> ' .. info.name .. ' !!', 1, 0, 1);
+			local name = info.name
+			local atlasName = info.atlasName
+
+			if (atlasName == 'VignetteLoot') then
+				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+				DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
+			elseif (atlasName == 'VignetteEventElite') then
+				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+				DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
+			else
+				DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
+			end
 		end
 	end
 
