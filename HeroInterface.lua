@@ -3,7 +3,11 @@ frame:RegisterEvent("CHAT_MSG_LOOT");
 frame:RegisterEvent("PLAYER_LOGIN");
 frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("BANKFRAME_OPENED");
+frame:RegisterEvent("BANKFRAME_CLOSED");
+frame:RegisterEvent("MERCHANT_SHOW");
+frame:RegisterEvent("MERCHANT_CLOSED");
 frame:RegisterEvent("AUCTION_HOUSE_SHOW");
+frame:RegisterEvent("AUCTION_HOUSE_CLOSED");
 frame:RegisterEvent("VIGNETTE_MINIMAP_UPDATED");
 frame:Hide();
 
@@ -42,6 +46,25 @@ local TRACKED_ACHIEVEMENTS = {
 	12028,
 	12078
 }
+
+local function OpenAllBagsAndBanks()
+	local max = NUM_BAG_SLOTS + NUM_BANKBAGSLOTS
+	for i=0, max, 1 do
+		if (IsBagOpen(i) == nil) then
+			OpenBag(i, true)
+		else
+			CloseBag(i, true)
+			OpenBag(i, true)
+		end
+	end
+end
+
+local function CloseAllBagsAndBanks()
+	local max = NUM_BAG_SLOTS + NUM_BANKBAGSLOTS
+	for i=0, max, 1 do
+		CloseBag(i, true)
+	end
+end
 
 frame:SetScript("OnEvent", function(self, event, ...)
 
@@ -106,11 +129,27 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 
 	if (event == "BANKFRAME_OPENED") then
-		ToggleAllBags(nil, true);
+		OpenAllBagsAndBanks();
+	end
+
+	if (event == "BANKFRAME_CLOSED") then
+		CloseAllBagsAndBanks();
+	end
+
+	if (event == "MERCHANT_SHOW") then
+		OpenAllBagsAndBanks();
+	end
+
+	if (event == "MERCHANT_CLOSED") then
+		CloseAllBagsAndBanks();
 	end
 
 	if (event == "AUCTION_HOUSE_SHOW") then
-		ToggleAllBags(nil, true);
+		OpenAllBagsAndBanks();
+	end
+
+	if (event == "AUCTION_HOUSE_CLOSED") then
+		CloseAllBagsAndBanks();
 	end
 
 	if (event == "VIGNETTE_MINIMAP_UPDATED") then
