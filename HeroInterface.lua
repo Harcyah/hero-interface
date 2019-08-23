@@ -124,7 +124,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			if (atlasName == 'VignetteLoot') then
 				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
 				DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
-			elseif (atlasName == 'VignetteEventElite') then
+			elseif (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
 				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
 				DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
 			else
