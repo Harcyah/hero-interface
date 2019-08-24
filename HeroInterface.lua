@@ -168,6 +168,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
 			elseif (atlasName == 'QuestObjective') then
 				-- Do nothing
+			elseif (atlasName == 'nazjatar-nagaevent') then
+				-- Do nothing
 			else
 				DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 			end
