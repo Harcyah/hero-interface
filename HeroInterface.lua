@@ -44,7 +44,8 @@ local TRACKED_ACHIEVEMENTS = {
 	9900,
 	10167,
 	12028,
-	12078
+	12078,
+	13699
 }
 
 local function OpenAllBagsAndBanks()
@@ -154,25 +155,35 @@ frame:SetScript("OnEvent", function(self, event, ...)
 
 	if (event == "VIGNETTE_MINIMAP_UPDATED") then
 		local onMinimap = select(2, ...);
-		if (onMinimap) then
-			local guid = select(1, ...);
-			local info = C_VignetteInfo.GetVignetteInfo(guid)
-			local name = info.name
-			local atlasName = info.atlasName
+		if (onMinimap == false) then
+			return
+		end
 
-			if (atlasName == 'VignetteLoot') then
-				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
-				DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
-			elseif (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
-				PlaySound(SOUNDKIT.RAID_WARNING, "Master");
-				DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
-			elseif (atlasName == 'QuestObjective') then
-				-- Do nothing
-			elseif (atlasName == 'nazjatar-nagaevent') then
-				-- Do nothing
-			else
-				DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
-			end
+		local guid = select(1, ...);
+		local info = C_VignetteInfo.GetVignetteInfo(guid)
+		if (info == nil) then
+			return
+		end
+
+		local name = info.name
+		local atlasName = info.atlasName
+
+		if (atlasName == 'VignetteLoot') then
+			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+			DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
+		elseif (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
+			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+			DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
+		elseif (atlasName == 'QuestObjective') then
+			-- Do nothing
+		elseif (atlasName == 'nazjatar-nagaevent') then
+			-- Do nothing
+		elseif (atlasName == 'Object') then
+			-- Do nothing
+		elseif (string.find(atlasName, "Warfront-") == 0) then
+			-- Do nothing
+		else
+			DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 		end
 	end
 
