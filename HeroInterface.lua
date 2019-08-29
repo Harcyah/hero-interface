@@ -67,6 +67,10 @@ local function CloseAllBagsAndBanks()
 	end
 end
 
+local function StartsWith(str, token)
+	return str:sub(1, #token) == token
+end
+
 frame:SetScript("OnEvent", function(self, event, ...)
 
 	if (event == "PLAYER_LOGIN") then
@@ -180,8 +184,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'Object') then
 			-- Do nothing
-		elseif (string.find(atlasName, "Warfront-") == 0) then
+		elseif (StartsWith(atlasName, "Warfront-")) then
 			-- Do nothing
+		elseif (StartsWith(atlasName, "Islands-")) then
+		-- Do nothing
 		else
 			DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 		end
