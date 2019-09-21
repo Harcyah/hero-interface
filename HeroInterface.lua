@@ -186,6 +186,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'CrossedFlags') then
 			-- Do nothing
+		elseif (atlasName == 'VignetteEvent') then
+			-- Do nothing
 		elseif (atlasName == 'HordeSymbol') then
 			-- Do nothing
 		elseif (StartsWith(atlasName, "Warfront-")) then
