@@ -42,8 +42,7 @@ local TRACKED_ACHIEVEMENTS = {
 	13469,
 	9900,
 	12028,
-	12078,
-	13699
+	12078
 }
 
 local function OpenAllBagsAndBanks()
