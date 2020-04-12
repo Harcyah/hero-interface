@@ -41,7 +41,6 @@ local TRACKED_ACHIEVEMENTS = {
 	5417,
 	8293,
 	9900,
-	12028,
 	12078
 }
 
@@ -188,6 +187,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		elseif (atlasName == 'VignetteKillElite') then
 			-- Do nothing
 		elseif (atlasName == 'HordeSymbol') then
+			-- Do nothing
+		elseif (atlasName == 'AllianceSymbol') then
 			-- Do nothing
 		elseif (StartsWith(atlasName, "Warfront-")) then
 			-- Do nothing
