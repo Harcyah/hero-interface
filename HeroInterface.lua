@@ -186,6 +186,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'VignetteEvent') then
 			-- Do nothing
+		elseif (atlasName == 'Portail de Néant instable') then
+			-- Do nothing
 		elseif (atlasName == 'VignetteKillElite') then
 			-- Do nothing
 		elseif (atlasName == 'HordeSymbol') then
