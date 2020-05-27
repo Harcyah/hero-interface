@@ -102,6 +102,27 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			update = true;
 		end
 
+		SetCVar("buffDurations", 1);
+		SetCVar("consolidateBuffs", 0);
+		SetCVar("chatBubbles", 0);
+		SetCVar("chatBubblesParty", 0);
+		SetCVar("chatMouseScroll", 1);
+		SetCVar("removeChatDelay", 1);
+		SetCVar("instantQuestText", 1);
+		SetCVar("showTutorials", 0);
+		SetCVar("violenceLevel", 5);
+		SetCVar("showDungeonEntrancesOnMap", 1);
+
+		SetCVar("UnitNameNPC", 1);
+		SetCVar("UnitNameOwn", 0);
+		SetCVar("UnitNamePlayerGuild", 1);
+		SetCVar("UnitNamePlayerPVPTitle", 1);
+
+		SetCVar("UnitNameEnemyPlayerName", 1);
+		SetCVar("UnitNameEnemyPetName", 1);
+		SetCVar("UnitNameEnemyGuardianName", 1);
+		SetCVar("UnitNameEnemyTotemName", 1);
+
 		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
 			SetCVar("multiBarRightVerticalLayout", "1");
 			update = true;
