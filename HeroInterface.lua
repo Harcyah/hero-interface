@@ -32,7 +32,7 @@ TOYS[71259] = 41; -- médaillon-de-leyara
 TOYS[163750] = 42; -- kostume-de-kovork
 TOYS[127696] = 43; -- miroir-de-mascotte-magique
 TOYS[122283] = 44; -- mémoire-sacrée-de-rukhmar
-TOYS[127394] = 45; -- camouflage-boguelin
+TOYS[134007] = 45; -- eternal-black-diamond-ring
 TOYS[129149] = 46; -- charme-de-la-porte-de-la-mort
 TOYS[127659] = 47; -- chapeau-de-boucanier-de-fer-fantomatique
 TOYS[156833] = 48; -- siffletimbre-de-katy
@@ -90,17 +90,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 
 	if (event == "PLAYER_ENTERING_WORLD") then
-		local update = false;
-
-		if (SHOW_MULTI_ACTIONBAR_3 == nil or SHOW_MULTI_ACTIONBAR_3 == false) then
-			SHOW_MULTI_ACTIONBAR_3 = true;
-			update = true;
-		end
-
-		if (SHOW_MULTI_ACTIONBAR_4 == nil or SHOW_MULTI_ACTIONBAR_4 == false) then
-			SHOW_MULTI_ACTIONBAR_4 = true;
-			update = true;
-		end
 
 		SetCVar("buffDurations", 1);
 		SetCVar("consolidateBuffs", 0);
@@ -123,19 +112,29 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		SetCVar("UnitNameEnemyGuardianName", 1);
 		SetCVar("UnitNameEnemyTotemName", 1);
 
-		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
-			SetCVar("multiBarRightVerticalLayout", "1");
-			update = true;
+		local update = false;
+
+		if (SHOW_MULTI_ACTIONBAR_3 == nil or SHOW_MULTI_ACTIONBAR_3 == false) then
+			SHOW_MULTI_ACTIONBAR_3 = true;
 		end
 
-		if (update == true) then
-			DEFAULT_CHAT_FRAME:AddMessage('Refreshing toy bar');
+		if (SHOW_MULTI_ACTIONBAR_4 == nil or SHOW_MULTI_ACTIONBAR_4 == false) then
+			SHOW_MULTI_ACTIONBAR_4 = true;
+		end
 
-			InterfaceOptions_UpdateMultiActionBars();
-			for k, v in pairs(TOYS) do
+		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
+			SetCVar("multiBarRightVerticalLayout", "1");
+		end
+
+		InterfaceOptions_UpdateMultiActionBars();
+		for toy, slot in pairs(TOYS) do
+			local actionType, id = GetActionInfo(slot)
+			if (actionType ~= "item" or id ~= toy) then
+				DEFAULT_CHAT_FRAME:AddMessage('Updating action slot : ' .. tostring(slot) .. ' with toy ' .. tostring(id), 1, 0, 1);
 				ClearCursor();
-				PickupItem(k)
-				PlaceAction(v)
+				PickupItem(toy);
+				PlaceAction(slot);
+				ClearCursor();
 			end
 		end
 
