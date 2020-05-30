@@ -42,7 +42,8 @@ local TRACKED_ACHIEVEMENTS = {
 	6089,
 	6927,
 	8293,
-	9900
+	9900,
+	11176
 }
 
 local function OpenAllBagsAndBanks()
@@ -91,6 +92,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 
 	if (event == "PLAYER_ENTERING_WORLD") then
 
+		SetCVar("autoLootDefault", 1);
 		SetCVar("buffDurations", 1);
 		SetCVar("consolidateBuffs", 0);
 		SetCVar("chatBubbles", 0);
@@ -112,7 +114,13 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		SetCVar("UnitNameEnemyGuardianName", 1);
 		SetCVar("UnitNameEnemyTotemName", 1);
 
-		local update = false;
+		if (SHOW_MULTI_ACTIONBAR_1 == nil or SHOW_MULTI_ACTIONBAR_1 == false) then
+			SHOW_MULTI_ACTIONBAR_1 = true;
+		end
+
+		if (SHOW_MULTI_ACTIONBAR_2 == nil or SHOW_MULTI_ACTIONBAR_2 == false) then
+			SHOW_MULTI_ACTIONBAR_2 = true;
+		end
 
 		if (SHOW_MULTI_ACTIONBAR_3 == nil or SHOW_MULTI_ACTIONBAR_3 == false) then
 			SHOW_MULTI_ACTIONBAR_3 = true;
@@ -122,9 +130,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			SHOW_MULTI_ACTIONBAR_4 = true;
 		end
 
-		if (GetCVar("multiBarRightVerticalLayout") ~= "1") then
-			SetCVar("multiBarRightVerticalLayout", "1");
-		end
+		SetCVar("multiBarRightVerticalLayout", "1");
 
 		InterfaceOptions_UpdateMultiActionBars();
 		for toy, slot in pairs(TOYS) do
