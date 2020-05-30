@@ -114,6 +114,9 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		SetCVar("UnitNameEnemyGuardianName", 1);
 		SetCVar("UnitNameEnemyTotemName", 1);
 
+		SetCVar("screenshotFormat", "tga");
+		SetCVar("screenshotQuality", 10);
+
 		if (SHOW_MULTI_ACTIONBAR_1 == nil or SHOW_MULTI_ACTIONBAR_1 == false) then
 			SHOW_MULTI_ACTIONBAR_1 = true;
 		end
