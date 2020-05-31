@@ -42,8 +42,7 @@ local TRACKED_ACHIEVEMENTS = {
 	6089,
 	6927,
 	8293,
-	9900,
-	11176
+	9900
 }
 
 local function OpenAllBagsAndBanks()
@@ -91,7 +90,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 
 	if (event == "PLAYER_ENTERING_WORLD") then
-
 		SetCVar("autoLootDefault", 1);
 		SetCVar("buffDurations", 1);
 		SetCVar("consolidateBuffs", 0);
@@ -103,17 +101,14 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		SetCVar("showTutorials", 0);
 		SetCVar("violenceLevel", 5);
 		SetCVar("showDungeonEntrancesOnMap", 1);
-
 		SetCVar("UnitNameNPC", 1);
 		SetCVar("UnitNameOwn", 0);
 		SetCVar("UnitNamePlayerGuild", 1);
 		SetCVar("UnitNamePlayerPVPTitle", 1);
-
 		SetCVar("UnitNameEnemyPlayerName", 1);
 		SetCVar("UnitNameEnemyPetName", 1);
 		SetCVar("UnitNameEnemyGuardianName", 1);
 		SetCVar("UnitNameEnemyTotemName", 1);
-
 		SetCVar("screenshotFormat", "tga");
 		SetCVar("screenshotQuality", 10);
 
@@ -157,6 +152,23 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			id = TRACKED_ACHIEVEMENTS[i];
 			AddTrackedAchievement(id);
 		end
+
+		for i = 1, NUM_CHAT_WINDOWS do
+			SetChatWindowSize(i, 12);
+		end
+
+		CHAT_FRAME_WIDTH = 585;
+		CHAT_FRAME_HEIGHT = 250;
+		CHAT_FRAME_OFFSET_X = 0;
+		CHAT_FRAME_OFFSET_Y = 90;
+
+		ChatFrame1:ClearAllPoints();
+		ChatFrame1:SetWidth(CHAT_FRAME_WIDTH);
+		ChatFrame1:SetHeight(CHAT_FRAME_HEIGHT);
+		ChatFrame1:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', CHAT_FRAME_OFFSET_X, CHAT_FRAME_OFFSET_Y);
+		ChatFrame1:SetUserPlaced(true);
+
+		QuickJoinToastButton:Hide();
 	end
 
 	if (event == "BANKFRAME_OPENED") then
