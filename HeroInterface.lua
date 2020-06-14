@@ -41,7 +41,6 @@ local TRACKED_ACHIEVEMENTS = {
 	4601,
 	6089,
 	6927,
-	8293,
 	9900
 }
 
