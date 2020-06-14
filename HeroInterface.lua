@@ -39,7 +39,6 @@ TOYS[156833] = 48; -- siffletimbre-de-katy
 
 local TRACKED_ACHIEVEMENTS = {
 	4601,
-	6089,
 	6927,
 	9900
 }
