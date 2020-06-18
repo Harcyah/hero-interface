@@ -40,7 +40,12 @@ TOYS[156833] = 48; -- siffletimbre-de-katy
 local TRACKED_ACHIEVEMENTS = {
 	4601,
 	6927,
-	9900
+	9900,
+	8081,
+	10356,
+	6943,
+	7313,
+	13128
 }
 
 local function OpenAllBagsAndBanks()
