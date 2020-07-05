@@ -238,6 +238,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'AllianceSymbol') then
 			-- Do nothing
+		elseif (atlasName == 'PortalPurple') then
+			-- Do nothing
+		elseif (atlasName == 'DemonInvasion5') then
+			-- Do nothing
 		elseif (StartsWith(atlasName, "Warfront-")) then
 			-- Do nothing
 		elseif (StartsWith(atlasName, "Islands-")) then
