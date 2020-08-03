@@ -14,7 +14,7 @@ frame:Hide();
 local TOYS={}
 TOYS[35275] = 25; -- orbe-des-sindorei
 TOYS[64651] = 26; -- amulette-de-feu-follet
-TOYS[118716] = 27; -- atours-de-goren
+TOYS[116115] = 27; -- ailes-flamboyantes
 TOYS[164375] = 28; -- banane-de-mauvais-mojo
 TOYS[134022] = 29; -- beau-chapeau-de-burgy-cœur-noir
 TOYS[44719] = 30; -- bière-frénécœur
