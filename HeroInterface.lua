@@ -230,6 +230,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'SmallQuestBang') then
 			-- Do nothing
+		elseif (atlasName == 'ArtifactQuest') then
+			-- Do nothing
+		elseif (atlasName == 'DungeonSkull') then
+			-- Do nothing
 		elseif (atlasName == 'Portail de Néant instable') then
 			-- Do nothing
 		elseif (atlasName == 'VignetteKillElite') then
