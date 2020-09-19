@@ -38,13 +38,12 @@ TOYS[127659] = 47; -- chapeau-de-boucanier-de-fer-fantomatique
 TOYS[156833] = 48; -- siffletimbre-de-katy
 
 local TRACKED_ACHIEVEMENTS = {
-	6943,
 	13128,
 	11573,
 	9643,
+	8101,
 	13638,
 	12104,
-	10603,
 	12026
 }
 
