@@ -104,12 +104,18 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		SetCVar("showDungeonEntrancesOnMap", 1);
 		SetCVar("UnitNameNPC", 1);
 		SetCVar("UnitNameOwn", 0);
-		SetCVar("UnitNamePlayerGuild", 1);
-		SetCVar("UnitNamePlayerPVPTitle", 1);
-		SetCVar("UnitNameEnemyPlayerName", 1);
-		SetCVar("UnitNameEnemyPetName", 1);
+		SetCVar("UnitNamePlayerGuild", 0);
+		SetCVar("UnitNamePlayerPVPTitle", 0);
 		SetCVar("UnitNameEnemyGuardianName", 1);
-		SetCVar("UnitNameEnemyTotemName", 1);
+		SetCVar("UnitNameEnemyPetName", 0);
+		SetCVar("UnitNameEnemyMinionName", 0);
+		SetCVar("UnitNameEnemyPlayerName", 1);
+		SetCVar("UnitNameEnemyTotemName", 0);
+		SetCVar("UnitNameFriendlyGuardianName", 1);
+		SetCVar("UnitNameFriendlyPetName", 0);
+		SetCVar("UnitNameFriendlyMinionName", 0);
+		SetCVar("UnitNameFriendlyPlayerName", 1);
+		SetCVar("UnitNameFriendlyTotemName", 0);
 		SetCVar("screenshotFormat", "tga");
 		SetCVar("screenshotQuality", 10);
 
