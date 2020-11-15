@@ -91,34 +91,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
 	end
 
 	if (event == "PLAYER_ENTERING_WORLD") then
-		SetCVar("autoLootDefault", 1);
-		SetCVar("buffDurations", 1);
-		SetCVar("consolidateBuffs", 0);
-		SetCVar("chatBubbles", 0);
-		SetCVar("chatBubblesParty", 0);
-		SetCVar("chatMouseScroll", 1);
-		SetCVar("removeChatDelay", 1);
-		SetCVar("instantQuestText", 1);
-		SetCVar("showTutorials", 0);
-		SetCVar("violenceLevel", 5);
-		SetCVar("showDungeonEntrancesOnMap", 1);
-		SetCVar("UnitNameNPC", 1);
-		SetCVar("UnitNameOwn", 0);
-		SetCVar("UnitNamePlayerGuild", 0);
-		SetCVar("UnitNamePlayerPVPTitle", 0);
-		SetCVar("UnitNameEnemyGuardianName", 1);
-		SetCVar("UnitNameEnemyPetName", 0);
-		SetCVar("UnitNameEnemyMinionName", 0);
-		SetCVar("UnitNameEnemyPlayerName", 1);
-		SetCVar("UnitNameEnemyTotemName", 0);
-		SetCVar("UnitNameFriendlyGuardianName", 1);
-		SetCVar("UnitNameFriendlyPetName", 0);
-		SetCVar("UnitNameFriendlyMinionName", 0);
-		SetCVar("UnitNameFriendlyPlayerName", 1);
-		SetCVar("UnitNameFriendlyTotemName", 0);
-		SetCVar("screenshotFormat", "tga");
-		SetCVar("screenshotQuality", 10);
-
 		if (SHOW_MULTI_ACTIONBAR_1 == nil or SHOW_MULTI_ACTIONBAR_1 == false) then
 			SHOW_MULTI_ACTIONBAR_1 = true;
 		end
