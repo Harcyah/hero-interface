@@ -1,14 +1,14 @@
-local frame = CreateFrame("Frame");
-frame:RegisterEvent("CHAT_MSG_LOOT");
-frame:RegisterEvent("PLAYER_LOGIN");
-frame:RegisterEvent("PLAYER_ENTERING_WORLD");
-frame:RegisterEvent("BANKFRAME_OPENED");
-frame:RegisterEvent("BANKFRAME_CLOSED");
-frame:RegisterEvent("MERCHANT_SHOW");
-frame:RegisterEvent("MERCHANT_CLOSED");
-frame:RegisterEvent("AUCTION_HOUSE_SHOW");
-frame:RegisterEvent("AUCTION_HOUSE_CLOSED");
-frame:RegisterEvent("VIGNETTE_MINIMAP_UPDATED");
+local frame = CreateFrame('Frame');
+frame:RegisterEvent('CHAT_MSG_LOOT');
+frame:RegisterEvent('PLAYER_LOGIN');
+frame:RegisterEvent('PLAYER_ENTERING_WORLD');
+frame:RegisterEvent('BANKFRAME_OPENED');
+frame:RegisterEvent('BANKFRAME_CLOSED');
+frame:RegisterEvent('MERCHANT_SHOW');
+frame:RegisterEvent('MERCHANT_CLOSED');
+frame:RegisterEvent('AUCTION_HOUSE_SHOW');
+frame:RegisterEvent('AUCTION_HOUSE_CLOSED');
+frame:RegisterEvent('VIGNETTE_MINIMAP_UPDATED');
 frame:Hide();
 
 local TOYS={}
@@ -69,11 +69,11 @@ local function StartsWith(str, token)
 	return str:sub(1, #token) == token
 end
 
-frame:SetScript("OnEvent", function(self, event, ...)
+frame:SetScript('OnEvent', function(self, event, ...)
 
-	if (event == "PLAYER_LOGIN") then
-		local texture = PlayerFrame:CreateTexture(nil, "BORDER");
-		texture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Elite");
+	if (event == 'PLAYER_LOGIN') then
+		local texture = PlayerFrame:CreateTexture(nil, 'BORDER');
+		texture:SetTexture('Interface\\TargetingFrame\\UI-TargetingFrame-Elite');
 		texture:SetAllPoints(PlayerFrame);
 		texture:SetTexCoord(1, 0.09375, 0, 0.78125);
 
@@ -82,15 +82,15 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		MinimapZoomOut:Hide();
 
 		PlayerFrame:ClearAllPoints();
-		PlayerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, -4);
+		PlayerFrame:SetPoint('TOPLEFT', UIParent, 'TOPLEFT', 0, -4);
 		FocusFrame:SetUserPlaced(true);
 
 		TargetFrame:ClearAllPoints();
-		TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 210, -4);
+		TargetFrame:SetPoint('TOPLEFT', UIParent, 'TOPLEFT', 210, -4);
 		TargetFrame:SetUserPlaced(true);
 	end
 
-	if (event == "PLAYER_ENTERING_WORLD") then
+	if (event == 'PLAYER_ENTERING_WORLD') then
 		if (SHOW_MULTI_ACTIONBAR_1 == nil or SHOW_MULTI_ACTIONBAR_1 == false) then
 			SHOW_MULTI_ACTIONBAR_1 = true;
 		end
@@ -107,12 +107,12 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			SHOW_MULTI_ACTIONBAR_4 = true;
 		end
 
-		SetCVar("multiBarRightVerticalLayout", "1");
+		SetCVar('multiBarRightVerticalLayout', '1');
 
 		InterfaceOptions_UpdateMultiActionBars();
 		for toy, slot in pairs(TOYS) do
 			local actionType, id = GetActionInfo(slot)
-			if (actionType ~= "item" or id ~= toy) then
+			if (actionType ~= 'item' or id ~= toy) then
 				DEFAULT_CHAT_FRAME:AddMessage('Updating action slot : ' .. tostring(slot) .. ' with toy ' .. tostring(id), 1, 0, 1);
 				ClearCursor();
 				PickupItem(toy);
@@ -150,31 +150,31 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		QuickJoinToastButton:Hide();
 	end
 
-	if (event == "BANKFRAME_OPENED") then
+	if (event == 'BANKFRAME_OPENED') then
 		OpenAllBagsAndBanks();
 	end
 
-	if (event == "BANKFRAME_CLOSED") then
+	if (event == 'BANKFRAME_CLOSED') then
 		CloseAllBagsAndBanks();
 	end
 
-	if (event == "MERCHANT_SHOW") then
+	if (event == 'MERCHANT_SHOW') then
 		OpenAllBagsAndBanks();
 	end
 
-	if (event == "MERCHANT_CLOSED") then
+	if (event == 'MERCHANT_CLOSED') then
 		CloseAllBagsAndBanks();
 	end
 
-	if (event == "AUCTION_HOUSE_SHOW") then
+	if (event == 'AUCTION_HOUSE_SHOW') then
 		OpenAllBagsAndBanks();
 	end
 
-	if (event == "AUCTION_HOUSE_CLOSED") then
+	if (event == 'AUCTION_HOUSE_CLOSED') then
 		CloseAllBagsAndBanks();
 	end
 
-	if (event == "VIGNETTE_MINIMAP_UPDATED") then
+	if (event == 'VIGNETTE_MINIMAP_UPDATED') then
 		local onMinimap = select(2, ...);
 		if (onMinimap == false) then
 			return
@@ -190,10 +190,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		local atlasName = info.atlasName
 
 		if (atlasName == 'VignetteLoot' or atlasName == 'VignetteLootElite') then
-			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+			PlaySound(SOUNDKIT.RAID_WARNING, 'Master');
 			DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
 		elseif (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
-			PlaySound(SOUNDKIT.RAID_WARNING, "Master");
+			PlaySound(SOUNDKIT.RAID_WARNING, 'Master');
 			DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
 		elseif (atlasName == 'QuestObjective') then
 			-- Do nothing
@@ -223,23 +223,23 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'DemonInvasion5') then
 			-- Do nothing
-		elseif (StartsWith(atlasName, "Warfront-")) then
+		elseif (StartsWith(atlasName, 'Warfront-')) then
 			-- Do nothing
-		elseif (StartsWith(atlasName, "Islands-")) then
+		elseif (StartsWith(atlasName, 'Islands-')) then
 		-- Do nothing
 		else
 			DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 		end
 	end
 
-	if (event == "CHAT_MSG_LOOT") then
+	if (event == 'CHAT_MSG_LOOT') then
 		local text = select(1, ...);
-		local id = string.match(text, "Hitem:(.-):");
+		local id = string.match(text, 'Hitem:(.-):');
 		local eventPlayerName  = select(2, ...);
 
-		local playerName = UnitName("Player");
-		local realmName = string.gsub(GetRealmName(), "%s+", "");
-		local fullPlayerName = playerName .. "-" .. realmName;
+		local playerName = UnitName('Player');
+		local realmName = string.gsub(GetRealmName(), '%s+', '');
+		local fullPlayerName = playerName .. '-' .. realmName;
 
 		local itemName = select(1, GetItemInfo(id));
 		local itemRarity = select(3, GetItemInfo(id));
@@ -264,7 +264,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		end
 
 		if (fullPlayerName == eventPlayerName and itemRarity >= 3 and itemBind == 2) then
-			PlaySound(SOUNDKIT.AUCTION_WINDOW_OPEN, "Master");
+			PlaySound(SOUNDKIT.AUCTION_WINDOW_OPEN, 'Master');
 			DEFAULT_CHAT_FRAME:AddMessage('Bind on equip loot : Looted ' .. itemName .. ' type ' .. itemType, 1, 0, 1);
 		end
 	end
