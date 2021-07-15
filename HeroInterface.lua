@@ -234,6 +234,10 @@ frame:SetScript('OnEvent', function(self, event, ...)
 	if (event == 'CHAT_MSG_LOOT') then
 		local text = select(1, ...);
 		local id = string.match(text, 'Hitem:(.-):');
+		if id == nil then
+			return
+		end
+
 		local eventPlayerName  = select(2, ...);
 
 		local playerName = UnitName('Player');
