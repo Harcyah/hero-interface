@@ -202,9 +202,13 @@ frame:SetScript('OnEvent', function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'CrossedFlags') then
 			-- Do nothing
+		elseif (atlasName == 'poi-soulspiritghost') then
+			-- Do nothing
 		elseif (atlasName == 'VignetteEvent') then
 			-- Do nothing
 		elseif (atlasName == 'SmallQuestBang') then
+			-- Do nothing
+		elseif (atlasName == 'TeleportationNetwork-32x32') then
 			-- Do nothing
 		elseif (atlasName == 'ArtifactQuest') then
 			-- Do nothing
