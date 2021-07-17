@@ -212,6 +212,8 @@ frame:SetScript('OnEvent', function(self, event, ...)
 			-- Do nothing
 		elseif (atlasName == 'ArtifactQuest') then
 			-- Do nothing
+		elseif (atlasName == 'TorghastDoor-ArrowUp-32x32') then
+			-- Do nothing
 		elseif (atlasName == 'DungeonSkull') then
 			-- Do nothing
 		elseif (atlasName == 'Portail de Néant instable') then
