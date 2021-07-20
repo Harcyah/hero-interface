@@ -230,8 +230,10 @@ frame:SetScript('OnEvent', function(self, event, ...)
 			-- Do nothing
 		elseif (StartsWith(atlasName, 'Warfront-')) then
 			-- Do nothing
+		elseif (StartsWith(atlasName, 'Warfronts-')) then
+			-- Do nothing
 		elseif (StartsWith(atlasName, 'Islands-')) then
-		-- Do nothing
+			-- Do nothing
 		else
 			DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 		end
