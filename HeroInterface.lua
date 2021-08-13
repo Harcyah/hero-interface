@@ -64,9 +64,49 @@ local function CloseAllBagsAndBanks()
 	end
 end
 
-local function StartsWith(str, token)
-	return str:sub(1, #token) == token
+local function StartsWith(table, needle)
+	for index, value in ipairs(table) do
+		if value:sub(1, #needle) == needle then
+			return true
+		end
+	end
+	return false
 end
+
+local function HasValue(table, needle)
+    for index, value in ipairs(table) do
+        if value == needle then
+            return true
+        end
+    end
+    return false
+end
+
+local IGNORED_VIGNETTES_EXACT_NAME = {
+	'QuestObjective',
+	'nazjatar-nagaevent',
+	'Object',
+	'CrossedFlags',
+	'poi-soulspiritghost',
+	'VignetteEvent',
+	'SmallQuestBang',
+	'TeleportationNetwork-32x32',
+	'ArtifactQuest',
+	'TorghastDoor-ArrowUp-32x32',
+	'DungeonSkull',
+	'Portail de Néant instable',
+	'VignetteKillElite',
+	'HordeSymbol',
+	'AllianceSymbol',
+	'PortalPurple',
+	'DemonInvasion5',
+}
+
+local IGNORED_VIGNETTES_START_WITH = {
+	'Warfront-',
+	'Warfronts-',
+	'Islands-'
+}
 
 frame:SetScript('OnEvent', function(self, event, ...)
 
@@ -188,55 +228,27 @@ frame:SetScript('OnEvent', function(self, event, ...)
 		local name = info.name
 		local atlasName = info.atlasName
 
+		if (HasValue(IGNORED_VIGNETTES_EXACT_NAME, atlasName)) then
+			return
+		end
+
+		if (StartsWith(IGNORED_VIGNETTES_START_WITH, atlasName)) then
+			return
+		end
+
 		if (atlasName == 'VignetteLoot' or atlasName == 'VignetteLootElite') then
 			PlaySound(SOUNDKIT.RAID_WARNING, 'Master');
 			DEFAULT_CHAT_FRAME:AddMessage('Found treasure : ' .. name, 0.949, 0.109, 0.796);
-		elseif (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
+			return
+		end
+
+		if (atlasName == 'VignetteEventElite' or atlasName == 'VignetteKill') then
 			PlaySound(SOUNDKIT.RAID_WARNING, 'Master');
 			DEFAULT_CHAT_FRAME:AddMessage('Found elite : ' .. name, 0.949, 0.109, 0.796);
-		elseif (atlasName == 'QuestObjective') then
-			-- Do nothing
-		elseif (atlasName == 'nazjatar-nagaevent') then
-			-- Do nothing
-		elseif (atlasName == 'Object') then
-			-- Do nothing
-		elseif (atlasName == 'CrossedFlags') then
-			-- Do nothing
-		elseif (atlasName == 'poi-soulspiritghost') then
-			-- Do nothing
-		elseif (atlasName == 'VignetteEvent') then
-			-- Do nothing
-		elseif (atlasName == 'SmallQuestBang') then
-			-- Do nothing
-		elseif (atlasName == 'TeleportationNetwork-32x32') then
-			-- Do nothing
-		elseif (atlasName == 'ArtifactQuest') then
-			-- Do nothing
-		elseif (atlasName == 'TorghastDoor-ArrowUp-32x32') then
-			-- Do nothing
-		elseif (atlasName == 'DungeonSkull') then
-			-- Do nothing
-		elseif (atlasName == 'Portail de Néant instable') then
-			-- Do nothing
-		elseif (atlasName == 'VignetteKillElite') then
-			-- Do nothing
-		elseif (atlasName == 'HordeSymbol') then
-			-- Do nothing
-		elseif (atlasName == 'AllianceSymbol') then
-			-- Do nothing
-		elseif (atlasName == 'PortalPurple') then
-			-- Do nothing
-		elseif (atlasName == 'DemonInvasion5') then
-			-- Do nothing
-		elseif (StartsWith(atlasName, 'Warfront-')) then
-			-- Do nothing
-		elseif (StartsWith(atlasName, 'Warfronts-')) then
-			-- Do nothing
-		elseif (StartsWith(atlasName, 'Islands-')) then
-			-- Do nothing
-		else
-			DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
+			return
 		end
+
+		DEFAULT_CHAT_FRAME:AddMessage('Unknown vignette type : ' .. atlasName .. ' -> ' .. name, 1, 0, 0);
 	end
 
 	if (event == 'CHAT_MSG_LOOT') then
