@@ -64,9 +64,13 @@ local function CloseAllBagsAndBanks()
 	end
 end
 
+local function StringStartsWith(str, start)
+   return str:sub(1, #start) == start
+end
+
 local function StartsWith(table, needle)
 	for index, value in ipairs(table) do
-		if value:sub(1, #needle) == needle then
+		if StringStartsWith(needle, value) then
 			return true
 		end
 	end
