@@ -103,13 +103,14 @@ local IGNORED_VIGNETTES_EXACT_NAME = {
 	'HordeSymbol',
 	'AllianceSymbol',
 	'PortalPurple',
+	'PortalRed',
 	'DemonInvasion5',
 }
 
 local IGNORED_VIGNETTES_START_WITH = {
 	'Warfront-',
 	'Warfronts-',
-	'Islands-'
+	'Islands-',
 }
 
 frame:SetScript('OnEvent', function(self, event, ...)
