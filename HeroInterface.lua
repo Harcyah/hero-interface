@@ -87,30 +87,32 @@ local function HasValue(table, needle)
 end
 
 local IGNORED_VIGNETTES_EXACT_NAME = {
-	'QuestObjective',
-	'nazjatar-nagaevent',
-	'Object',
-	'CrossedFlags',
-	'poi-soulspiritghost',
-	'VignetteEvent',
-	'SmallQuestBang',
-	'TeleportationNetwork-32x32',
-	'ArtifactQuest',
-	'TorghastDoor-ArrowUp-32x32',
-	'DungeonSkull',
-	'Portail de Néant instable',
-	'VignetteKillElite',
-	'HordeSymbol',
 	'AllianceSymbol',
+	'ArtifactQuest',
+	'CrossedFlags',
+	'DemonInvasion5',
+	'DungeonSkull',
+	'HordeSymbol',
+	'Object',
+	'Portail de Néant instable',
+	'PortalBlue',
 	'PortalPurple',
 	'PortalRed',
-	'DemonInvasion5',
+	'QuestObjective',
+	'QuestTurnin',
+	'SmallQuestBang',
+	'TeleportationNetwork-32x32',
+	'TorghastDoor-ArrowUp-32x32',
+	'VignetteEvent',
+	'VignetteKillElite',
+	'nazjatar-nagaevent',
+	'poi-soulspiritghost',
 }
 
 local IGNORED_VIGNETTES_START_WITH = {
+	'Islands-',
 	'Warfront-',
 	'Warfronts-',
-	'Islands-',
 }
 
 frame:SetScript('OnEvent', function(self, event, ...)
