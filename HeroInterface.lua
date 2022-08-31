@@ -65,7 +65,7 @@ local function CloseAllBagsAndBanks()
 end
 
 local function StringStartsWith(str, start)
-   return str:sub(1, #start) == start
+	return str:sub(1, #start) == start
 end
 
 local function StartsWith(table, needle)
