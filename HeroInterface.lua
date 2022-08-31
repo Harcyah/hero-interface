@@ -78,12 +78,12 @@ local function StartsWith(table, needle)
 end
 
 local function HasValue(table, needle)
-    for index, value in ipairs(table) do
-        if value == needle then
-            return true
-        end
-    end
-    return false
+	for index, value in ipairs(table) do
+		if value == needle then
+			return true
+		end
+	end
+	return false
 end
 
 local IGNORED_VIGNETTES_EXACT_NAME = {
@@ -168,7 +168,7 @@ frame:SetScript('OnEvent', function(self, event, ...)
 		end
 
 		local trackedAchievements = { GetTrackedAchievements() }
-	    for i = 1, #trackedAchievements do
+		for i = 1, #trackedAchievements do
 			local achievementID = trackedAchievements[i];
 			RemoveTrackedAchievement(achievementID);
 		end
